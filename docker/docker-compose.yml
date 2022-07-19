@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  dynamodb-new-year-resolutions-local:
+    container_name: dynamodb-new-year-resolutions-local
+    image: "amazon/dynamodb-local:latest"
+    command: "-jar DynamoDBLocal.jar -sharedDb -optimizeDbBeforeStartup -dbPath ./data"
+    volumes:
+      - "./dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+    ports:
+      - "9001:8000"
+    networks:
+      - new-year-resolutions-net
+networks:
+  new-year-resolutions-net:
+    attachable: true

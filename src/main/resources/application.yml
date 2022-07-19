@@ -1,0 +1,13 @@
+micronaut:
+  application:
+    name: talentLandMicronautReactiveProgramming
+  server:
+    port: 8181
+  netty:
+    event-loops:
+      default:
+        num-threads: 1
+
+dynamodb:
+  endpoint: http://localhost:9001
+  new-year-resolutions-table-name: new-year-resolutions
