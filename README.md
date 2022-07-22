@@ -4,8 +4,21 @@
 
 ## Objetivo ##
 
+Al finalizar este taller, el participante habrá:
+
+* Conocido un nuevo framework de aplicaciones
+* Obtenido contexto sobre un paradigma de programación
+* Usado nuevas herramientas
+* Generado un poco de ammsiedad por las nuevas cosas que ahora sabe que no sabía :p
+
+  
+![img_4.png](images/meme.png)
+
+**¿Qué vamos a hacer hoy?**
+
 En este workshop usaremos como base esta aplicación que recupera de una base de datos una lista de tweets
-cuyo tema son los propósitos de año nuevo. El proyecto, aunque cumple con el propósito de la aplicación,
+cuyo tema son los propósitos de año nuevo. La forma de consumir los tweets es a través de un servicio
+REST. El proyecto, aunque cumple con el propósito de la aplicación,
 está implementado de una manera no reactiva. El objetivo de este workshop es transformar esta
 app en una aplicación reactiva utilizando el proyecto Reactor.
 
@@ -18,8 +31,8 @@ app en una aplicación reactiva utilizando el proyecto Reactor.
 En el caso de Micronaut y Java, recomiendo instalarlo usando [SDKMan](https://sdkman.io/),
 ya que también agrega las variables de entorno necesarias para estas 2 dependencias
 
-* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) 2.7.X
-* [Siege](https://www.joedog.org/siege-manual/) 4.X.X
+* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) 2.7.X - Para conectarnos a la instancia local de DynamoDB
+* [Siege](https://www.joedog.org/siege-manual/) 4.X.X - Para estresar a nuestro servicio
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/) 4.X.X
     * De ser posible, antes del workshop descargar la imagen para DynamoDB: `docker pull amazon/dynamodb-local:latest`
       esto nos ahorrará unos minutos
@@ -44,7 +57,7 @@ Ademas de agregar a la variable de entorno `$PATH` la ruta de los ejecutables de
 Para la inicialización de la base de datos, asegúrate que Docker desktop esté corriendo, ya que
 para la base de datos vamos a usar la imagen de DynamoDB.
 
-* Para crear y cargar la tabla ejecuta el siguiente script: `setup-db.sh`. Lo puedes
+* Para crear y cargar la tabla ejecuta el siguiente script: `setup-db.sh` que se encuentra dentro de la carpeta docker del proyecto. Lo puedes
   ejecutar desde línea de comandos: `/bin/bash [PROJECT_PATH]/talent-land-micronaut-reactive-programming/docker/setup-db.sh`
   o desde el IDE haciendo clic en el icono de Run:
 
@@ -55,6 +68,8 @@ Verás en el log de la consola una salida similar a la siguiente:
 ![img_1.png](images/setupRunningOutput.png)
 
 Puede que tarde un par de minutos mientras descarga la imagen de Docker, cree e inserte registros en la tabla.
+Esta es la estructura de la tabla que se crea:
+![img_5.png](images/tabla.png)
 
 #### Intellij IDEA
 Si decides utilizar Intellij, asegúrate de habilitar el procesamiento de anotaciones, como se muestra
@@ -78,7 +93,7 @@ hacer la siguiente petición usando la herramienta `curl` de línea de comandos,
 
 Si todo está ejecutándose correctamente, verás una salida como la siguiente:
 
-![img.png](img.png)
+![img.png](images/resultadoEjemplo.png)
 
 ---
 
@@ -113,18 +128,19 @@ Puedes ver la descripción y ejemplos de estos y más operadores en la el manual
 [Reactor](https://projectreactor.io/docs/core/release/reference/index.html#which-operator)
 
 ### Base de datos
-Se está usando el driver dynamodb-enhanced de Amazon para conectarse a la base de datos, el cual soporta 
+Se está usando el driver `dynamodb-enhanced` de Amazon para conectarse a la base de datos, el cual soporta 
 programación síncrona (usando el cliente `DynamoDbEnhancedClient`) asi como asíncrona usando `DynamoDbEnhancedAsyncClient`.
 Esta última interfase nos servirá para conectarnos a DynamoDB de manera que la base de datos no sea algo que bloquee nuestro 
 event loop. Puedes ver la documentación de referencia [aqui](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/DynamoDbEnhancedAsyncClient.html)
 
-#### Comandos recurrentes  ####
+#### Comandos  ####
 A continuación una lista de comandos que te serán útiles a través de este workshop:
 
 * Ejecutar la aplicación desde línea de comandos: `./gradlew run`.
 * Benchmarking con **Siage**: `siege http://localhost:8181/reactive/resolutions/gender/male/contains/a -c 5 -r 1`
   * Donde `-c` es para indicar los usuarios concurrentes y
   * `-r` para indicar las repeticiones
+* Para borrar la tabla de tweets: `aws dynamodb delete-table --endpoint-url  http://localhost:9001 --table-name new-year-resolutions --output yaml --no-cli-pager`
 
 ---
 

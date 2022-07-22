@@ -8,7 +8,7 @@ DYNAMODB_ENDPOINT="http://localhost:9001"
 NEW_YEAR_RESOLUTIONS="new-year-resolutions"
 
 create_new_year_resolution_table() {
-  echo "table delete: aws dynamodb delete-table --endpoint-url  $DYNAMODB_ENDPOINT --table-name $NEW_YEAR_RESOLUTIONS --output yaml --no-cli-pager"
+  echo "Para borrar la tabla de tweets: aws dynamodb delete-table --endpoint-url  $DYNAMODB_ENDPOINT --table-name $NEW_YEAR_RESOLUTIONS --output yaml --no-cli-pager"
 
   echo "creating table definition: ${NEW_YEAR_RESOLUTIONS}"
 
