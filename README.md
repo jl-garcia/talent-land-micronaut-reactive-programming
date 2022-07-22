@@ -157,3 +157,9 @@ A continuación una lista de comandos que te serán útiles a través de este wo
 - [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
 #### Feature http-client documentation
 - [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+
+---
+## Presentación: 
+![img.png](images/micronaut.png)
+![img_1.png](images/reactor.png)
+![img_2.png](images/reactive.png)
