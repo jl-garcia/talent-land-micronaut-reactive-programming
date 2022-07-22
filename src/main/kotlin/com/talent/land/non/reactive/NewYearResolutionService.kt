@@ -1,5 +1,6 @@
 package com.talent.land.non.reactive
 
+import com.talent.land.NewYearResolutions
 import jakarta.inject.Singleton
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

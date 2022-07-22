@@ -1,4 +1,4 @@
-package com.talent.land.non.reactive
+package com.talent.land
 
 import io.micronaut.core.annotation.Introspected
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank
 
 @Introspected
 @DynamoDbBean
-class NewYearResolutions(
+data class NewYearResolutions(
         @get:DynamoDbPartitionKey
         @get:DynamoDbAttribute(value = "tweet_id")
         var tweetId: String? = null,
@@ -37,4 +37,6 @@ class NewYearResolutions(
         @field:NotBlank
         @get:DynamoDbAttribute(value = "location")
         var localtion: String? = null,
+
+        var duration: Long? = null,
 ) {}

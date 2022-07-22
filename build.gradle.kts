@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     kapt("io.micronaut:micronaut-http-validation")
+    implementation("io.micronaut.reactor:micronaut-reactor")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-jackson-databind")
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
@@ -24,6 +25,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
+    //version reciente que soporta consultas asincronas
     implementation("software.amazon.awssdk:dynamodb-enhanced:2.17.209")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")

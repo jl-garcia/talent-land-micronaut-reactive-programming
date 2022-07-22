@@ -1,5 +1,6 @@
 package com.talent.land.non.reactive
 
+import com.talent.land.NewYearResolutions
 import io.micronaut.context.annotation.Value
 import jakarta.inject.Singleton
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient

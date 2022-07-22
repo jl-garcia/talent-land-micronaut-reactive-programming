@@ -1,5 +1,6 @@
 package com.talent.land.non.reactive
 
+import com.talent.land.NewYearResolutions
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
