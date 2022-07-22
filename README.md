@@ -137,7 +137,7 @@ event loop. Puedes ver la documentación de referencia [aqui](https://sdk.amazon
 A continuación una lista de comandos que te serán útiles a través de este workshop:
 
 * Ejecutar la aplicación desde línea de comandos: `./gradlew run`.
-* Benchmarking con **Siage**: `siege http://localhost:8181/resolutions/gender/male/contains/a -c 5 -r 1`
+* Benchmarking con **Siage**: `siege http://localhost:8181/resolutions/gender/male/contains/play -c 50 -r 5`
   * Donde `-c` es para indicar los usuarios concurrentes y
   * `-r` para indicar las repeticiones
 * Para borrar la tabla de tweets: `aws dynamodb delete-table --endpoint-url  http://localhost:9001 --table-name new-year-resolutions --output yaml --no-cli-pager`
